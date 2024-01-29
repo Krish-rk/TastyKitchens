@@ -1,0 +1,8 @@
+.item-container {
+  display: flex;
+  flex-direction: row;
+}
+.item-img {
+  width: 100px;
+  margin-left: 2px;
+}
