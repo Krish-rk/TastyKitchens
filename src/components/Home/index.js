@@ -4,6 +4,8 @@ import {BsFilterRight} from 'react-icons/bs'
 import ReactSlick from '../ReactSlick'
 import RestaurantItem from '../RestaurantItem'
 
+import './index.css'
+
 class Home extends Component {
   state = {
     carousel: [],
@@ -65,7 +67,7 @@ class Home extends Component {
           </div>
         </div>
         <div>
-          <ul>
+          <ul className="list-container">
             {restaurentList.map(each => (
               <RestaurantItem item={each} key={each.id} />
             ))}

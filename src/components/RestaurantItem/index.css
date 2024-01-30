@@ -1,8 +1,8 @@
 .item-container {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
 }
 .item-img {
   width: 100px;
-  margin-left: 2px;
+  margin: 5px;
 }
