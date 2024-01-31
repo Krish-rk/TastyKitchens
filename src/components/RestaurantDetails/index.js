@@ -1,6 +1,8 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
+import CartContext from '../../context/CartContext'
+import FoodDetails from '../FoodDetails'
 import './index.css'
 
 const apiStatusConstants = {
@@ -71,6 +73,7 @@ class RestaurantDetails extends Component {
       cuisine,
       foodItems,
     } = restaurantData
+
     return (
       <>
         <div className="top-container">
@@ -93,7 +96,11 @@ class RestaurantDetails extends Component {
             </div>
           </div>
         </div>
-        <FoodDetails foods={foodItems} />
+        <ul>
+          {foodItems.map(food => (
+            <FoodDetails food={food} key={food.id} />
+          ))}
+        </ul>
       </>
     )
   }
