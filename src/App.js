@@ -25,15 +25,33 @@ class App extends Component {
   }
 
   addCartItem = food => {
-    this.setState(prev => ({
-      cartList: [...prev.cartList, food],
-    }))
+    const {id} = food
+    const {cartList} = this.state
+    const updatedquantity = cartList.filter(each => each.id === id)
+    let newCartList = []
+    if (updatedquantity.length > 0) {
+      newCartList = cartList.map(each => {
+        if (each.id === id) {
+          return {
+            ...each,
+            quantity: food.quantity,
+          }
+        }
+        return each
+      })
+    } else {
+      newCartList = [...cartList, food]
+    }
+
+    this.setState({
+      cartList: newCartList,
+    })
   }
 
   render() {
     const {cartList} = this.state
     console.log(cartList)
-    console.log(cartList)
+
     return (
       <CartContext.Provider
         value={{
