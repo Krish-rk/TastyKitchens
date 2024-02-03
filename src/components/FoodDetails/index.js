@@ -1,6 +1,8 @@
 import {Component} from 'react'
 import {BsPlusSquare, BsDashSquare} from 'react-icons/bs'
+import {BiRupee} from 'react-icons/bi'
 import CartContext from '../../context/CartContext'
+import './index.css'
 
 class FoodDetails extends Component {
   state = {
@@ -9,7 +11,7 @@ class FoodDetails extends Component {
 
   renderAdd = () => {
     const {addCartItem, food, quantity} = this.props
-    const {id} = food
+
     const Additem = () => {
       addCartItem({
         food,
@@ -32,6 +34,7 @@ class FoodDetails extends Component {
           type="button"
           className="quantity-controller-button"
           onClick={this.onDecrementQuantity}
+          data-testid="minus"
         >
           <BsDashSquare className="quantity-controller-icon" />
           plus
@@ -41,6 +44,7 @@ class FoodDetails extends Component {
           type="button"
           className="quantity-controller-button"
           onClick={this.onIncrementQuantity}
+          data-testid="plus"
         >
           <BsPlusSquare className="quantity-controller-icon" />-
         </button>
@@ -72,21 +76,29 @@ class FoodDetails extends Component {
             imageUrl: food.image_url,
             id: food.id,
             foodType: food.food_type,
+            rating: food.rating,
           }
-          const {name, cost, imageUrl, id, foodType} = updatedFood
+          const {name, cost, imageUrl, id, foodType, rating} = updatedFood
           const {addCartItem} = value
           const onClickAddToCart = () => {
-            addCartItem({...food, quantity})
+            addCartItem({...updatedFood, quantity})
           }
 
           return (
-            <div>
+            <li data-testid="foodItem" className="food-list-item-container">
               <div>
-                <img src={imageUrl} />
+                <img
+                  src={imageUrl}
+                  alt="foodItem"
+                  className="food-image-size"
+                />
               </div>
-              <div>
-                <h1>{name}</h1>
-                <p>{cost}</p>
+              <div className="food-item-details-view">
+                <h1 className="food-title">{name}</h1>
+                <div className="rupee-name-rating-container">
+                  <p className="cost-of-food">Rs. {cost}</p>
+                </div>
+                <p>Rating {rating} </p>
                 <div className="quantity-container">
                   <button
                     type="button"
@@ -110,13 +122,13 @@ class FoodDetails extends Component {
                 </div>
                 <button
                   type="button"
-                  className="button add-to-cart-btn"
+                  className="add-to-cart-btn"
                   onClick={onClickAddToCart}
                 >
-                  ADD TO CART
+                  ADD
                 </button>
               </div>
-            </div>
+            </li>
           )
         }}
       </CartContext.Consumer>

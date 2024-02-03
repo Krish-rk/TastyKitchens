@@ -1,5 +1,7 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import {BiRupee} from 'react-icons/bi'
+import {BsFillStarFill} from 'react-icons/bs'
 import Loader from 'react-loader-spinner'
 import CartContext from '../../context/CartContext'
 import FoodDetails from '../FoodDetails'
@@ -73,30 +75,43 @@ class RestaurantDetails extends Component {
       cuisine,
       foodItems,
     } = restaurantData
+    console.log(restaurantData)
 
     return (
       <>
         <div className="top-container">
-          <div>
-            <img src={imageUrl} className="food-image" />
-          </div>
-          <div>
-            <h1>{name}</h1>
-            <p>{location}</p>
-            <p>{cuisine}</p>
-            <div>
-              <div>
-                <p>Ratings</p>
-                <p>{rating}</p>
-              </div>
-              <div>
-                <p>Cost for two</p>
-                <p>{costForTwo}</p>
+          <div className="restaurent-back-image">
+            <img
+              src={imageUrl}
+              alt="restaurant"
+              className="restaurant-image-size"
+            />
+
+            <div className="restaurant-details-view">
+              <h1>{name}</h1>
+              <p>{location}</p>
+              <p>{cuisine}</p>
+              <div className="rating-cost-container">
+                <div>
+                  <div className="icon-flex-row">
+                    <BsFillStarFill />
+                    <p>{rating}</p>
+                  </div>
+                  <p>{reviewsCount} + Ratings</p>
+                </div>
+                <div className="vl"> </div>
+                <div>
+                  <div className="icon-flex-row">
+                    <BiRupee />
+                    <p>{costForTwo}</p>
+                  </div>
+                  <p>Cost for two</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <ul>
+        <ul className="food-list-container-element">
           {foodItems.map(food => (
             <FoodDetails food={food} key={food.id} />
           ))}
@@ -106,8 +121,11 @@ class RestaurantDetails extends Component {
   }
 
   renderLoadingView = () => (
-    <div className="products-details-loader-container">
-      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
+    <div
+      className="products-details-loader-container"
+      data-testid="restaurant-details-loader"
+    >
+      <Loader type="TailSpin" color="#0b69ff" height="50" width="50" />
     </div>
   )
 
