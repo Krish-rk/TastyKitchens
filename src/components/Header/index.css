@@ -53,6 +53,12 @@
   order: 1;
   flex-grow: 0;
   margin: 0px 8px;
+  height: 50px;
+  width: 100px;
+}
+.logout-button:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 .mobile-view-container {
   display: flex;

@@ -5,6 +5,8 @@ import {BsFillStarFill} from 'react-icons/bs'
 import Loader from 'react-loader-spinner'
 import CartContext from '../../context/CartContext'
 import FoodDetails from '../FoodDetails'
+import Header from '../Header'
+import Footer from '../Footer'
 import './index.css'
 
 const apiStatusConstants = {
@@ -79,6 +81,7 @@ class RestaurantDetails extends Component {
 
     return (
       <>
+        <Header />
         <div className="top-container">
           <div className="restaurent-back-image">
             <img
@@ -116,6 +119,7 @@ class RestaurantDetails extends Component {
             <FoodDetails food={food} key={food.id} />
           ))}
         </ul>
+        <Footer />
       </>
     )
   }

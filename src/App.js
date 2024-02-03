@@ -6,8 +6,7 @@ import Home from './components/Home'
 import RestaurantDetails from './components/RestaurantDetails'
 import CartContext from './context/CartContext'
 import Cart from './components/Cart'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import ProtectedRoute from './components/ProtectedRoute'
 
 class App extends Component {
   state = {
@@ -49,14 +48,16 @@ class App extends Component {
           addCartItem: this.addCartItem,
         }}
       >
-        <Header />
         <Switch>
-          <Route exact path="/login" component={LoginForm} />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/restaurant/:id" component={RestaurantDetails} />
-          <Route exact path="/cart" component={Cart} />
+          <ProtectedRoute exact path="/login" component={LoginForm} />
+          <ProtectedRoute exact path="/" component={Home} />
+          <ProtectedRoute
+            exact
+            path="/restaurant/:id"
+            component={RestaurantDetails}
+          />
+          <ProtectedRoute exact path="/cart" component={Cart} />
         </Switch>
-        <Footer />
       </CartContext.Provider>
     )
   }

@@ -1,6 +1,7 @@
 .cart-items-box {
   width: 80%;
-  margin: 20px;
+  margin: 40px;
+  margin-left: 150px;
   padding: 15px;
   display: flex;
   flex-direction: column;

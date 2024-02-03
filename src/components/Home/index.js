@@ -4,6 +4,8 @@ import {BsFilterRight} from 'react-icons/bs'
 import {BiChevronRightSquare, BiChevronLeftSquare} from 'react-icons/bi'
 import ReactSlick from '../ReactSlick'
 import RestaurantItem from '../RestaurantItem'
+import Header from '../Header'
+import Footer from '../Footer'
 
 import './index.css'
 
@@ -105,6 +107,7 @@ class Home extends Component {
     const {carousel, restaurentList, sortBy, count} = this.state
     return (
       <>
+        <Header />
         <div className="home-cont">
           <ReactSlick carousel={carousel} />
         </div>
@@ -161,6 +164,7 @@ class Home extends Component {
             <BiChevronRightSquare size={40} />
           </button>
         </div>
+        <Footer />
       </>
     )
   }
